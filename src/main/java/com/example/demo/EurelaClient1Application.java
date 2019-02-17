@@ -17,6 +17,15 @@ public class EurelaClient1Application {
 	public String hello() {
 		return "hello ji shaiksha";
 	}
+	
+@Bean
+@Profile("!default")
+public EurekaInstanceConfigBean eurekaInstanceConfig(InetUtils inetUtils) {
+  EurekaInstanceConfigBean b = new EurekaInstanceConfigBean(inetUtils);
+  AmazonInfo info = AmazonInfo.Builder.newBuilder().autoBuild("eureka");
+  b.setDataCenterInfo(info);
+  return b;
+}
 
 }
 
